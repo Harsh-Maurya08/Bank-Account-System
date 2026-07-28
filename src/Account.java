@@ -27,7 +27,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Number :" + accountNumber + "|" + "Name of Holder :" + accountHolder + "|" 
+        return "Account Number :" + accountNumber + "|" + "Name of Holder :" + accountHolder + "|" 
                 + "Current Balance : " + accountBalance; 
     }
 }

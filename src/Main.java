@@ -1,12 +1,12 @@
 import java.util.*;
 public class Main {
-    static int accontNumber = 0;
+    static int accountSerial = 0;
     static Management management = new Management();
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args){
         boolean n=true;
         while(n){
-            System.out.println(" 1.Create Account \n 2.Deposit Money \n 3.Withdraw Money \n 4.View Account Details \n 5.View Transaction History \n 6.Search Account \n 7.Close Account \n 8.Exit\n");
+            System.out.println(" \n 1.Create Account \n 2.Deposit Money \n 3.Withdraw Money \n 4.View Account Details \n 5.View Transaction History \n 6.Search Account \n 7.Close Account \n 8.Exit\n");
             System.out.print("Enter your Choice: ");
             int choice = input.nextInt();
             switch(choice){
@@ -32,6 +32,7 @@ public class Main {
                     closeFunc();
                     break;
                 case 8:
+                    System.out.println("The Bank Management Ends...");
                     n=false;
                     break;
             }
@@ -41,9 +42,9 @@ public class Main {
     public static void createFunc(){
         System.out.print("Enter the account holder name: ");
         String name = input.next();
-        accontNumber++;
+        accountSerial++;
         float balance = 0;
-        management.addAccount(new Account(accontNumber,name,balance));
+        management.addAccount(new Account(accountSerial,name,balance));
     }
 
     public static void depositFunc(){
@@ -73,10 +74,15 @@ public class Main {
     }
 
     public static void searchFunc(){
-
+        System.out.print("Enter the Account Number:");
+        int accNum = input.nextInt();
+        management.searchAccount(accNum);
     }
 
     public static void closeFunc(){
-
+        System.out.print("Enter the Account Number:");
+        int accNum = input.nextInt();
+        management.closeAccount(accNum);
+        accountSerial--;
     }
 }

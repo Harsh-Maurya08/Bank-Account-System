@@ -30,7 +30,7 @@ public class Management{
                     return;
                 }
                 else{
-                    System.out.println("Insuficient Balance...\n");
+                    System.out.println("\nInsuficient Balance...");
                     return;
                 }
             }

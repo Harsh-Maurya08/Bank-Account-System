@@ -1,9 +1,9 @@
 public class Account {
     private int accountNumber;
     private String accountHolder;
-    private float accountBalance;
+    private Double accountBalance;
 
-    Account(int accountNumber, String accountHolder, float accountBalance){
+    public Account(int accountNumber, String accountHolder, double accountBalance){
         this.accountNumber = accountNumber;
         this.accountHolder = accountHolder;
         this.accountBalance = accountBalance;
@@ -17,11 +17,11 @@ public class Account {
         return accountHolder;
     }
 
-    public float getAccountBalance(){
+    public double getAccountBalance(){
         return accountBalance;
     } 
 
-    public void setAccountBalance(float accountBalance) {
+    public void setAccountBalance(double accountBalance) {
         this.accountBalance = accountBalance;
     }
 

@@ -8,7 +8,14 @@ public class Main {
         while(n){
             System.out.println(" \n 1.Create Account \n 2.Deposit Money \n 3.Withdraw Money \n 4.View Account Details \n 5.View Transaction History \n 6.Search Account \n 7.Close Account \n 8.Exit\n");
             System.out.print("Enter your Choice: ");
-            int choice = input.nextInt();
+            int choice=0;
+            try{
+            choice = input.nextInt();
+            }
+            catch(InputMismatchException e){
+                System.out.println("\nPlease Enter the valid input...");
+                input.nextLine();
+            }
             switch(choice){
                 case 1:
                     createFunc();
@@ -76,13 +83,17 @@ public class Main {
     public static void searchFunc(){
         System.out.print("Enter the Account Number:");
         int accNum = input.nextInt();
-        management.searchAccount(accNum);
+        if(management.findAccount(accNum)==null){
+            System.out.println("The Given account number is not in the Bank dataset.");
+            return;
+        }
+        System.out.println("The account is found.");
+        System.out.println("The details of Account is: \n"+management.findAccount(accNum));
     }
 
     public static void closeFunc(){
         System.out.print("Enter the Account Number:");
         int accNum = input.nextInt();
         management.closeAccount(accNum);
-        accountSerial--;
     }
 }

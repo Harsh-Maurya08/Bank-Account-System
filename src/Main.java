@@ -77,7 +77,9 @@ public class Main {
     }
 
     public static void viewHistoryFunc(){
-
+        System.out.print("Enter the Account Number: ");
+        int accNum = input.nextInt();
+        management.getTransaction(accNum);
     }
 
     public static void searchFunc(){

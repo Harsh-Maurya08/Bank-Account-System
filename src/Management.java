@@ -1,5 +1,7 @@
 import java.util.*;
+import java.time.LocalDateTime;
 public class Management{
+    Transaction transaction;
     ArrayList<Account> accData = new ArrayList<>();
 
     public Account findAccount(int accNum){
@@ -20,20 +22,31 @@ public class Management{
 
     public void deposit(int accNum , float amount){
         Account a = findAccount(accNum);
+        if(a == null){
+            System.out.println("\nThe account is not exit in the Bank dataset.\n");
+            return;
+        }
             if(a.getAccountNumber()==accNum){
                 a.setAccountBalance(a.getAccountBalance()+amount);
+                LocalDateTime timestamp = LocalDateTime.now();
+                a.addTransactionHistory(new Transaction("Deposit", amount, timestamp));
                 System.out.printf("\nDeposit of amount : %.2f in the Account number : %d is completed\n",amount,accNum);
                 return;
             }
         
-        System.out.println("\nThe account is not exit in the Bank dataset.\n");
     }
 
     public void withdraw(int accNum , float amount){
         Account a = findAccount(accNum);
+        if(a == null){
+            System.out.println("\nThe account is not exit in the Bank dataset.\n");
+            return;
+        }
             if(a.getAccountNumber()==accNum){
                 if(a.getAccountBalance()>=amount){
                     a.setAccountBalance(a.getAccountBalance()-amount);
+                    LocalDateTime timestamp = LocalDateTime.now();
+                    a.addTransactionHistory(new Transaction("Withdraw", amount, timestamp));
                     System.out.printf("\nThe amount : %.2f is withdraw from the Account Number : %d successfully\n",amount,accNum);
                     return;
                 }
@@ -42,7 +55,6 @@ public class Management{
                     return;
                 }
             }
-        System.out.println("The Account Number didn't exit in the Bank dataset.\n");
     }
 
     public void viewDetails(int accNum){
@@ -62,5 +74,14 @@ public class Management{
                 return;
             }
         System.out.println("\nThe account doesn't exit in the Bank dataset.");
+    }
+
+    public void getTransaction(int accNum){
+        Account a = findAccount(accNum);
+        if(a != null){
+            a.getTransactionHistory(accNum);
+            return;
+        }
+        System.out.println("Account Not found in the Bank dataset");
     }
 }
